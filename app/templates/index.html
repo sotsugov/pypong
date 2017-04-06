@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>PyPong</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-slider.css" rel="stylesheet">
+    <link href="/static/css/grayscale.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet" type="text/css">
+
+    <script src="/static/js/moment.js"></script>
+    <script src="/static/js/countdown.min.js"></script>
+    <script src="/static/js/moment-countdown.min.js"></script>
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<script type="text/javascript">
+  setInterval(function()
+    {
+     $.getJSON('/get_values',
+        {},
+        function(data)
+        {
+            $("#fastest_streak").text(data['fastest_streak']);
+            $("#longest_streak").text(data['longest_streak']);
+            $("#last_streak_speed").text(data['last_streak_speed']);
+            $("#last_streak_length").text(data['last_streak_length']);
+            console.log(data['game_is_on'])
+            if (data['game_is_on']==true){
+                $("#smiley").removeClass().addClass('fa fa-frown-o fa-stack-1x fa-inverse');
+                $("#mark").removeClass().addClass('fa fa-ban text-danger');
+                $("#alert").prop('style', 'display:');
+                $("#subtext").text("Pffft... Table is busy... Again.");
+                }
+            else {
+                $("#smiley").removeClass().addClass('fa fa-smile-o fa-stack-1x fa-inverse');
+                $("#mark").removeClass().addClass('fa fa-check text-success');
+                $("#alert").prop('style', 'display: none');
+                $("#subtext").text("Awesome! Table is free!");
+            };
+        });
+    },
+    200);
+</script>
+
+<header class="intro">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 class="brand-heading">PyPong</h1>
+                    <p class="tagline">Internet of Ping Pong Things</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="leaderboard">
+    <div class="container">
+
+        <div class="col-lg-12 text-center">
+            <h3 class="section-heading">Leaderboard</h3>
+        </div>
+
+            <div class="row text-center">
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Fastest BPM</h4>
+                    <p class="statistics" id="fastest_streak">0</p>
+                </div>
+                <div class="col-md-3">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-diamond fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Longest Streak</h4>
+                    <p class="statistics" id="longest_streak">0</p>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3 class="section-heading">Current Game</h3>
+                    <h3 class="section-subheading"></h3>
+
+                    {% if data.game_is_on %}
+                        <div id="alert" class="alert alert-info" >
+                            <p>Send an SMS to <strong>075 2063 xxxx</strong> to know when the table becomes free.</p>
+                        </div>
+                    {% endif %}
+
+                    <br><br>
+                    </h3>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 text-center">
+                        <span class="fa-stack fa-2x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-arrows-h fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="service-heading">Bounces Per Minute</h4>
+                        <p class="statistics" id="last_streak_speed">0</p>
+                    </div>
+
+                    <div class="col-lg-4 text-center">
+                        <span class="fa-stack fa-2x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <!-- <i id="smiley" class="fa {% if data.game_is_on%}fa-frown-o{% else %}fa-smile-o{%endif%} fa-stack-1x fa-inverse"></i> -->
+                            <i id="smiley"></i>
+                        </span>
+                        <h4 class="service-heading" id="subtext">
+                            {% if not data.game_is_on %}
+                                Awesome! Table is free!
+                            {% else %}
+                                Pffft... Table is busy... Again.
+                            {% endif %}</h4>
+                        <p class="statistics">
+                            {% if not data.game_is_on %}
+                                <i class="fa fa-check text-success" id="mark"></i>
+                            {% else %}
+                                <i class="fa fa-ban text-danger" id="mark"></i>
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="col-lg-4 text-center">
+                        <span class="fa-stack fa-2x">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-area-chart fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <h4 class="service-heading">Last Streak Length</h4>
+                        <p class="statistics" id="last_streak_length">0</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+            <h3 class="section-heading">Nexmo Internal Hackaton Jan 2016</h3>
+        </div>
+    </div>
+</footer>
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.easing.min.js"></script>
+<script src="/static/js/grayscale.js"></script>
+</body>
+</html>
+
