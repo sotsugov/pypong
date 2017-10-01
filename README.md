@@ -20,9 +20,14 @@ Our set up looked like this:
 
 
 ## Installation
+First, start MySQL server locally
 ```
+virtualenv venv
+source venv/bin/activate
 pip install -r requirements.txt
-python run.py
+export FLASK_APP=app
+export FLASK_DEBUG=true
+flask run
 ```
 
 ## Contributing

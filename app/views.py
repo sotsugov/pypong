@@ -36,7 +36,7 @@ class Mdb:
             print("Database version : %s " % ver)
 
         except mysql.connector.Error, e:
-            print("Error %d: %s" % (e.args[0], e.args[1]))
+            print("Error {}".format(e))
 
         print("Connected!")
 
