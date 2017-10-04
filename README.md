@@ -20,3 +20,7 @@ flask run
 
 ## Contributing
 Your contributions are always welcome!
+
+
+### Winner of Nexmo IoT Hackaton, 2016
+![nexmo!](assets/nexmo.png)

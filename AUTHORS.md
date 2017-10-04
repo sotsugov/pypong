@@ -7,5 +7,5 @@ Development
 
 Contributors
 - Anna Dimitriadou
-- Fernando San Martin
 - Tony Jamous
+- Fernando San Martin
