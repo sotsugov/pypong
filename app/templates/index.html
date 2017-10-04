@@ -7,13 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>PyPong</title>
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/static/css/grayscale.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./static/css/styles.css"/>
+    <link rel="stylesheet" href="./static/css/wing.css"/>
 </head>
 
 <body>
@@ -45,113 +43,91 @@
     },
     200);
 </script>
-<header class="intro">
-    <div class="intro-body">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <h1 class="brand-heading">PyPong</h1>
-                    <p class="tagline">Internet of Ping Pong Things</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<header>
+    <section class="hero container center text-center">
+      <div>
+        <img src="./static/media/pypong.png" alt="PyPong Logo" height="125">
+        <h3>PyPong</h3>
+        <h5>Internet of Ping Pong Things</h5>
+      </div>
+    </section>
 </header>
 
-<section class="leaderboard">
-    <div class="container">
-        <div class="col-lg-12 text-center">
-            <h3 class="section-heading">Leaderboard</h3>
-        </div>
-
-        <div class="row text-center">
-            <div class="col-md-3"></div>
-            <div class="col-md-3">
-                <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Fastest BPM</h4>
-                <p class="statistics" id="fastest_streak">0</p>
-            </div>
-            <div class="col-md-3">
-                <span class="fa-stack fa-4x">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-diamond fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="service-heading">Longest Streak</h4>
-                <p class="statistics" id="longest_streak">0</p>
-            </div>
-            <div class="col-md-3"></div>
-        </div>
+<section id="leaderboard" class="container">
+  <div>
+    <h3 class="header text-center">Leaderboard</h3>
+    <div class="row text-center">
+      <div class="col">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+        </span>
+        <h5 class="text-center">Fastest BPM</h5>
+        <p class="content" id="fastest_streak">0</p>
+      </div>
+      <div class="col">
+        <span class="fa-stack fa-4x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-diamond fa-stack-1x fa-inverse"></i>
+        </span>
+        <h5 class="text-center">Longest Streak</h5>
+        <p class="content" id="longest_streak">0</p>
+      </div>
     </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3 class="section-heading">Current Game</h3>
-                    <h3 class="section-subheading"></h3>
-
-                    {% if data.game_is_on %}
-                        <div id="alert" class="alert alert-info" >
-                            <p>Send an SMS to <strong>075 2063 xxxx</strong> to know when the table becomes free.</p>
-                        </div>
-                    {% endif %}
-
-                    <br><br>
-                    </h3>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-4 text-center">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-arrows-h fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="service-heading">Bounces Per Minute</h4>
-                        <p class="statistics" id="last_streak_speed">0</p>
-                    </div>
-
-                    <div class="col-lg-4 text-center">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <!-- <i id="smiley" class="fa {% if data.game_is_on%}fa-frown-o{% else %}fa-smile-o{%endif%} fa-stack-1x fa-inverse"></i> -->
-                            <i id="smiley"></i>
-                        </span>
-                        <h4 class="service-heading" id="subtext">
-                            {% if not data.game_is_on %}
-                                Awesome! Table is free!
-                            {% else %}
-                                Pffft... Table is busy... Again.
-                            {% endif %}</h4>
-                        <p class="statistics">
-                            {% if not data.game_is_on %}
-                                <i class="fa fa-check text-success" id="mark"></i>
-                            {% else %}
-                                <i class="fa fa-ban text-danger" id="mark"></i>
-                            {% endif %}
-                        </p>
-                    </div>
-
-                    <div class="col-lg-4 text-center">
-                        <span class="fa-stack fa-2x">
-                            <i class="fa fa-circle fa-stack-2x"></i>
-                            <i class="fa fa-area-chart fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <h4 class="service-heading">Last Streak Length</h4>
-                        <p class="statistics" id="last_streak_length">0</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
+<section id="gameplay" class="container">
+      <div>
+    <h3 class="header text-center">Current Game</h3>
+    <h5> {% if data.game_is_on %}
+      <div id="alert" class="alert alert-info" >
+        <p>Send an SMS to <strong>075 2063 xxxx</strong> to know when the table becomes free.</p>
+      </div>
+    {% endif %}
+    </h5>
+    <div class="row text-center">
+      <div class="col">
+        <span class="fa-stack fa-2x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-arrows-h fa-stack-1x fa-inverse"></i>
+        </span>
+        <h5 class="text-center">Bounces Per Minute</h5>
+        <p class="content" id="last_streak_speed">0</p>
+      </div>
+      <div class="col">
+        <span class="fa-stack fa-2x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i id="smiley" class="fa {% if data.game_is_on%}fa-frown-o{% else %}fa-smile-o{%endif%} fa-stack-1x fa-inverse"></i>
+        </span>
+        <h5 class="text-center">
+         {% if not data.game_is_on %}
+            Awesome! Table is free!
+         {% else %}
+            Pffft... Table is busy... Again.
+         {% endif %}</h5>
+        <p class="content">
+            {% if not data.game_is_on %}
+                <i class="fa fa-check text-success" id="mark"></i>
+            {% else %}
+                <i class="fa fa-ban text-danger" id="mark"></i>
+            {% endif %}
+        </p>
+      </div>
+      <div class="col">
+        <span class="fa-stack fa-2x">
+          <i class="fa fa-circle fa-stack-2x"></i>
+          <i class="fa fa-area-chart fa-stack-1x fa-inverse"></i>
+        </span>
+        <h5 class="text-center">Last Streak Length</h5>
+        <p class="content" id="longest_streak">0</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script src="/static/js/jquery.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/jquery.easing.min.js"></script>
-<script src="/static/js/grayscale.js"></script>
+
 </body>
 </html>
 
