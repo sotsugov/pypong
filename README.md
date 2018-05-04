@@ -4,7 +4,7 @@ PyPong is an interactive teble tennis monitoring system. Once set up, PyPong mon
 ## Set Up
 * Orange RPi
 * USB Headset (used for microphone, but only usb mic will do)
-* 10,000 mhz power bank
+* 10,000 mAh power bank
 * Wi-Fi dongle
 
 ## Installation
