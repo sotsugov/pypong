@@ -1,5 +1,5 @@
 # PyPong
-PyPong is an interactive teble tennis monitoring system. Once set up, PyPong monitors ping pong ball bounce frequency to measure game logevity, total number of bounces, and longest rally. The results are displayed on the dashboard, if the table currently is in use, the notification service allows user to recieve SMS message when the table becomes available.
+PyPong is an interactive table tennis monitoring system. Once set up, PyPong monitors ping pong ball bounce frequency to measure game logevity, total number of bounces, and longest rally. The results are displayed on the dashboard, if the table currently is in use, the notification service allows user to recieve SMS message when the table becomes available.
 
 ## Set Up
 * Orange RPi
